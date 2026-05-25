@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Počitadlo hodů kostkou</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>🎲 Počitadlo do kostek</h1>
+
+    <div id="setup-step" class="card">
+        <div class="form-group">
+            <label for="player-count">Zvolte počet hráčů (1 - 10):</label>
+            <input type="number" id="player-count" min="1" max="10" value="2" inputmode="numeric">
+        </div>
+        <button onclick="generatePlayerInputs()">Pokračovat na jména</button>
+    </div>
+
+    <div id="names-step" class="card hidden">
+        <h2>Zadejte jména hráčů</h2>
+        <div id="names-container"></div>
+        <button onclick="startGame()" class="btn-success" style="margin-top: 15px;">Spustit hru</button>
+    </div>
+
+    <div id="game-step" class="card hidden">
+        <h2>Aktuální stav</h2>
+        <div id="players-list"></div>
+
+        <div id="controls-container" class="card turn-controls">
+            <p>Na tahu je: <span id="current-player-name">-</span></p>
+            <div class="form-group">
+                <label for="score-input">Zadejte body z aktuálního hodu:</label>
+                <input type="number" id="score-input" placeholder="Např. 350" min="0" inputmode="numeric">
+            </div>
+            <button onclick="submitTurn()">Zapsat body</button>
+        </div>
+    </div>
+
+    <div id="results-step" class="card hidden">
+        <div class="winner-box">
+            🏆 Vítěz: <span id="winner-name"></span>!
+        </div>
+        <h2>Konečné výsledky</h2>
+        <table id="results-table">
+            <thead>
+                <tr>
+                    <th>Pořadí</th>
+                    <th>Hráč</th>
+                    <th>Body</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        
+        <div class="restart-buttons">
+            <button onclick="restartWithSamePlayers()" class="btn-success">Odvetu se stejnými hráči! 🔄</button>
+            <button onclick="location.reload()" class="btn-restart">Změnit hráče (Reset)</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
